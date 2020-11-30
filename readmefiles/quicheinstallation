@@ -1,4 +1,8 @@
-Quiche is an implementation of the QUIC transport protocol and HTTP/3 which isspecified by the IETF. QUIC provides a low level API for processing QUIC packetsand handling connection state. Quiche http3-client is used to issue HTTP/3requests to a specified URL. This will perform the QUIC handshake and if successfulissues the request. There are two QUIC libraries to experiment with and they arengtcp2 and quiche.  Ngtcp2 is built with OpenSSL which enables alt-svc featurewhich is a HTTP/3 support command just like curl –http3 where as QUICHE isbuilt with BoringSSL which enables curl –http3 feature. In our thesis we mainlydeal with QUICHE version since NGINX web server has support to HTTP/3 whichis only build through BoringSSL but not OpenSSL.
+Quiche is an implementation of the QUIC transport protocol and HTTP/3 which isspecified by the IETF. 
+QUIC provides a low level API for processing QUIC packetsand handling connection state. Quiche http3-client is used to issue HTTP/3requests to a specified URL. This 
+will perform the QUIC handshake and if successfulissues the request. There are two QUIC libraries to experiment with and they arengtcp2 and quiche.  Ngtcp2 is built 
+with OpenSSL which enables alt-svc featurewhich is a HTTP/3 support command just like curl –http3 where as QUICHE isbuilt with BoringSSL which enables curl –http3 feature.
+In our thesis we mainlydeal with QUICHE version since NGINX web server has support to HTTP/3 whichis only build through BoringSSL but not OpenSSL.
 
 The Installation steps for building QUICHE are as follows:build
 
@@ -14,6 +18,14 @@ $ ln -vnf $(find target/release -name libcrypto.a -o -name libssl.a) deps/boring
 
 Build curl:
 
-$ cd ..$ git clone https://github.com/curl/curl$ cd curl$. /buildconf$ ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release"  –with-ssl=$PWD/../quiche/deps/boringssl –with-quiche=$PWD/../quiche/target/release–enable-alt-svc
+$ cd ..
+
+$ git clone https://github.com/curl/curl
+
+$ cd curl
+
+$. /buildconf
+
+$ ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release"  –with-ssl=$PWD/../quiche/deps/boringssl –with-quiche=$PWD/../quiche/target/release–enable-alt-svc
 
 $ make
