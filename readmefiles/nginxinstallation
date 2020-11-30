@@ -1,16 +1,24 @@
-Implementation of HTTP/3 and QUIC is integrated to installation of Nginx. This NGINX project by Cloudflare made available to the wider community to help pushadoption of QUIC and HTTP/3 . Nginx has their official release of this Web server with QUIC support which is a mercurialfeature release in which the code is at an alpha level of quality.Before installing NGINX with HTTP/3 support we need to install a BoringSSLlibrary that provides QUIC support .
+Implementation of HTTP/3 and QUIC is integrated to installation of Nginx. 
+This NGINX project by Cloudflare made available to the wider community to help pushadoption of QUIC and HTTP/3 .
+Nginx has their official release of this Web server with QUIC support which is a mercurialfeature release in which the code is at an alpha level of quality.Before installing NGINX with HTTP/3 support we need to install a BoringSSLlibrary that provides QUIC support .
 
 The procedure to build BoringSSL is as follows:
 
-$ git clone https://boringssl.googlesource.com/boringssl$ cd boringssl/
+$ git clone https://boringssl.googlesource.com/boringssl
 
-$ mkdir build$ cd build/
+$ cd boringssl/
+
+$ mkdir build
+
+$ cd build/
 
 $ cmake ..
+
 $ make
+
 $ cd
 
-After successfully installing BoringSSL the steps to install NGINX with HTTP/3are as follows:
+After successfully installing BoringSSL the steps to install NGINX with HTTP/3 are as follows:
 
 $ hg clone -b quic https://hg.nginx.org/nginx-quiccd nginx-quic
 sudo $ ./auto/configure –prefix=/etc/nginx–sbin-path=/usr/sbin/nginx–modules-path=/usr/lib/nginx/modules–conf-path=/etc/nginx/nginx.conf–error-log-path=/var/log/nginx/error.log–pid-path=/var/run/nginx.pid–lock-path=/var/run/nginx.lock –with-debug–with-http_v3_module –with-cc-opt="-I../boringssl/include"–with-ld-opt="-L../boringssl/build/ssl -L../boringssl/build/crypto" –with-http_ssl_module–with-http_v2_module –with-http_v3_module–with-http_quic_module –with-stream_quic_module
@@ -18,4 +26,5 @@ sudo $ ./auto/configure –prefix=/etc/nginx–sbin-path=/usr/sbin/nginx–modul
 $ make
 
 To check the nginx version$ nginx -Vnginx version:
-nginx/1.19.3 built by gcc 7.5.0 (Ubuntu 7.5.0-3ubuntu1 18.04)built with OpenSSL 1.1.1 (compatible; BoringSSL) (running with BoringSSL) TLSSNI support enabled configure arguments: –prefix=/etc/nginx –sbin-path=/usr/sbin/nginx–modules-path=/usr/lib/nginx/modules –conf-path=/etc/nginx/nginx.conf –error-log-path=/var/log/nginx/error.log –pid-path=/var/run/nginx.pid –lock-path=/var/run/nginx.lock –with-debug –with-http_v3_module –with-cc-opt=-I../boringssl/include –with-ld-opt=’-L../boringssl/build/ssl -L../boringssl/build/crypto’ –with-http_ssl_module –with-http_v2_module –with-http_v3_module–with-http_quic_module –with-stream_quic_module
+nginx/1.19.3 built by gcc 7.5.0 (Ubuntu 7.5.0-3ubuntu1 18.04)built with OpenSSL 1.1.1 (compatible; BoringSSL) (running with BoringSSL)
+TLSSNI support enabled configure arguments: –prefix=/etc/nginx –sbin-path=/usr/sbin/nginx–modules-path=/usr/lib/nginx/modules –conf-path=/etc/nginx/nginx.conf –error-log-path=/var/log/nginx/error.log –pid-path=/var/run/nginx.pid –lock-path=/var/run/nginx.lock –with-debug –with-http_v3_module –with-cc-opt=-I../boringssl/include –with-ld-opt=’-L../boringssl/build/ssl -L../boringssl/build/crypto’ –with-http_ssl_module –with-http_v2_module –with-http_v3_module–with-http_quic_module –with-stream_quic_module
