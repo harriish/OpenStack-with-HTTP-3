@@ -1,6 +1,7 @@
 Implementation of HTTP/3 and QUIC is integrated to installation of Nginx. 
 This NGINX project by Cloudflare made available to the wider community to help pushadoption of QUIC and HTTP/3 .
-Nginx has their official release of this Web server with QUIC support which is a mercurialfeature release in which the code is at an alpha level of quality.Before installing NGINX with HTTP/3 support we need to install a BoringSSLlibrary that provides QUIC support .
+Nginx has their official release of this Web server with QUIC support which is a mercurialfeature release in which the code is at an alpha level of quality.
+Before installing NGINX with HTTP/3 support we need to install a BoringSSLlibrary that provides QUIC support .
 
 The procedure to build BoringSSL is as follows:
 
