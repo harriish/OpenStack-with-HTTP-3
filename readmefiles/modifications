@@ -1,0 +1,53 @@
+Modifications done to software:
+
+
+A) Modifications done to Nginx in order to support make OpenStack relying with HTTP/3 requests.
+
+(i) initially stop apache2 and nginx services.
+
+sudo service apache2 stop
+sudo service nginx stop
+
+(ii) Delete the configuration scripts for Keystone which relies on Apache2.
+
+sudo rm /etc/init/keystone.conf
+
+(iii) Delete the default nginx configuration scripts
+
+sudo rm /etc/nginx/sites-available/default
+sudo rm /etc/ngix/sites-enabled/default
+
+(iv) create a log directory and assign proper permissions
+
+sudo mkdir /var/log/nginx/keystone
+sudo chown www-data:www-data/var/log/nginx/keystone
+
+(v) Add nginx configuration scripts which supports HTTP/3
+
+sudo mkdir /var/www/keystone
+
+
+
+
+B) Modifications done to DevStack to rely with Nginx which has HTTP/3 support
+
+make sure whether DevStack installed in a root user 'stack' which consists OpenStack core components
+directories.
+
+(i) copy the uwsgi initialization files of Keystone root repository to /etc/uwsgi location
+
+sudo cp keystone/httpd/keystone-uwsgi-admin.ini /etc/uwsgi
+sudo cp keystone/httpd/keystone-uwsgi-public.ini /etc/uwsgi
+
+(ii) Change the owner of the Keystone system files
+
+sudo chown -R www-data:www-data /var/www/keystone
+
+(iii) change the access permissions of Keystone system files
+
+sudo chmod ug+x /var/www/keystone/*
+
+(iv) modify the attributes of the user
+
+sudo usermod -G www-data keystone
+
