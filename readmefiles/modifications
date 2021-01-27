@@ -1,7 +1,7 @@
 Modifications done to software:
 
 
-A) Modifications done to Nginx in order to support make OpenStack relying with HTTP/3 requests.
+A) Modifications done to Nginx in order to make OpenStack relying with HTTP/3 requests.
 
 (i) initially stop apache2 and nginx services.
 
