@@ -8,7 +8,7 @@ The Installation steps for building QUICHE are as follows:build
 
 Build quiche and BoringSSL:
 
-$ git clone -–recursive https://github.com/cloudflare/quiche
+$ git clone --recursive https://github.com/cloudflare/quiche
 
 $ cd quiche
 
