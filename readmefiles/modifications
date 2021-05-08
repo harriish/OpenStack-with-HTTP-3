@@ -20,7 +20,7 @@ sudo rm /etc/ngix/sites-enabled/default
 (iv) create a log directory and assign proper permissions
 
 sudo mkdir /var/log/nginx/keystone
-sudo chown www-data:www-data/var/log/nginx/keystone
+sudo chown www-data:www-data /var/log/nginx/keystone
 
 (v) Add nginx configuration scripts which supports HTTP/3
 
